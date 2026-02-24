@@ -1,0 +1,12 @@
+{
+  "collaborations": {
+    "collab": {
+      "name": "collab",
+      "creator": "user1",
+      "tasks": {},
+      "users": [
+        "user1"
+      ]
+    }
+  }
+}
