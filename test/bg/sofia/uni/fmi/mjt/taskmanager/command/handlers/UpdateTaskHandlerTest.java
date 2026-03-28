@@ -77,7 +77,7 @@ class UpdateTaskHandlerTest {
         );
 
         String result = underTest.handle(arguments, IDENTIFIER);
-        System.out.println(result);
+
         assertTrue(result.startsWith("The last command couldn't be completed"),
                 "Handler should return error message on invalid date format.");
 

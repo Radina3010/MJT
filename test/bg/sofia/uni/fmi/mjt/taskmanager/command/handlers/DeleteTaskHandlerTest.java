@@ -51,7 +51,7 @@ class DeleteTaskHandlerTest {
                 .thenReturn(deletedTas);
 
         String result = underTest.handle(arguments, IDENTIFIER);
-        System.out.println(result);
+
         assertTrue(result.contains(" was deleted successfully"),
                 "Handler should return success message containing the deleted task details.");
 

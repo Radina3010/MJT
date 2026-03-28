@@ -6,6 +6,7 @@ import bg.sofia.uni.fmi.mjt.taskmanager.exception.UserDoesNotExistException;
 import bg.sofia.uni.fmi.mjt.taskmanager.model.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mindrot.jbcrypt.BCrypt;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -18,7 +19,7 @@ class UserRepositoryTest {
 
     @BeforeEach
     void setUp() throws UserAlreadyExistsException {
-        underTest.addUser("user1", "1234");
+        underTest.addUser("user1", BCrypt.hashpw("1234", BCrypt.gensalt()));
     }
 
     @Test
@@ -112,9 +113,8 @@ class UserRepositoryTest {
 
         assertEquals("user1", actual.username(),
                 "UserRepository's loginUser should return User object which username matches the username argument.");
-        assertEquals("1234", actual.password(),
-                "UserRepository's loginUser should return User object which password matches the password argument.");
-
+        assertTrue(BCrypt.checkpw("1234", actual.encodedPassword()),
+                "The stored password should be a valid BCrypt hash of '1234'.");
     }
 
     @Test
@@ -137,4 +137,5 @@ class UserRepositoryTest {
         assertFalse(underTest.isUserRegistered("username"),
                 "UserRepository's isUserRegistered should return false when the user does not exist.");
     }
+
 }

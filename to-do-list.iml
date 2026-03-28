@@ -14,5 +14,8 @@
     <orderEntry type="library" name="mockito.core" level="project" />
     <orderEntry type="library" name="mockito.junit.jupiter" level="project" />
     <orderEntry type="library" name="google.code.gson" level="project" />
+    <orderEntry type="library" exported="" name="spring-security-crypto-7.1.0-M3" level="project" />
+    <orderEntry type="library" name="commons-logging-1.2" level="project" />
+    <orderEntry type="library" name="jbcrypt-0.4" level="project" />
   </component>
 </module>

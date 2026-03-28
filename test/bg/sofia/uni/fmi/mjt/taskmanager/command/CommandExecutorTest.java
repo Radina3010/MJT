@@ -82,7 +82,6 @@ class CommandExecutorTest {
         assertFalse(response.contains("Please login first"),
                 "Public commands should work without login.");
 
-        verify(storage).registerUser("user1", "1234");
     }
 
     @Test

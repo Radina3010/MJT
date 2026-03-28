@@ -1,6 +1,5 @@
 package bg.sofia.uni.fmi.mjt.taskmanager.command.handlers;
 
-import bg.sofia.uni.fmi.mjt.taskmanager.command.handlers.results.CommandResult;
 import bg.sofia.uni.fmi.mjt.taskmanager.model.TaskManagerStorage;
 import bg.sofia.uni.fmi.mjt.taskmanager.command.CommandRules;
 import bg.sofia.uni.fmi.mjt.taskmanager.exception.CollaborationAlreadyExistsException;

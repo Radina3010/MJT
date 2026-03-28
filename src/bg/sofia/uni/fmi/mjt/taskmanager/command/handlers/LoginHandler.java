@@ -31,7 +31,6 @@ public class LoginHandler implements CommandHandler {
         String password = args.get(PASSWORD_ATTRIBUTE);
 
         try {
-
             storage.logInUser(username, password);
             loggedInUsers.put(sessionId, username);
             return String.format(SUCCESS_MESSAGE, username);

@@ -4,6 +4,7 @@ import bg.sofia.uni.fmi.mjt.taskmanager.exception.IncorrectPasswordException;
 import bg.sofia.uni.fmi.mjt.taskmanager.exception.UserAlreadyExistsException;
 import bg.sofia.uni.fmi.mjt.taskmanager.exception.UserDoesNotExistException;
 import bg.sofia.uni.fmi.mjt.taskmanager.model.entity.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,14 +20,14 @@ public class UserRepository {
     private static final String INCORRECT_PASSWORD_MESSAGE =
             "Password does not match with the username. Please try again!";
 
-    public void addUser(String username, String password) throws UserAlreadyExistsException {
+    public void addUser(String username, String encodedPassword) throws UserAlreadyExistsException {
 
         if (registeredUsers.containsKey(username)) {
             String message = String.format(USER_ALREADY_EXISTS_MESSAGE, username);
             throw new UserAlreadyExistsException(message);
         }
 
-        registeredUsers.put(username, new User(username, password));
+        registeredUsers.put(username, new User(username, encodedPassword));
     }
 
     public User loginUser(String username, String password)
@@ -41,8 +42,8 @@ public class UserRepository {
             throw new UserDoesNotExistException(message);
         }
 
-        String correctPassword = user.password();
-        if (!correctPassword.equals(password)) {
+        String encodedPassword = user.encodedPassword();
+        if (!BCrypt.checkpw(password, encodedPassword)) {
             throw new IncorrectPasswordException(INCORRECT_PASSWORD_MESSAGE);
         }
 

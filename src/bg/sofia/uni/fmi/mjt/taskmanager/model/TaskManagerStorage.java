@@ -108,8 +108,8 @@ public class TaskManagerStorage {
         }
     }
 
-    public void registerUser(String username, String password) throws UserAlreadyExistsException {
-        users.addUser(username, password);
+    public void registerUser(String username, String encodedPassword) throws UserAlreadyExistsException {
+        users.addUser(username, encodedPassword);
     }
 
     public User logInUser(String username, String password)

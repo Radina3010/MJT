@@ -3,6 +3,7 @@ package bg.sofia.uni.fmi.mjt.taskmanager.command.handlers;
 import bg.sofia.uni.fmi.mjt.taskmanager.model.TaskManagerStorage;
 import bg.sofia.uni.fmi.mjt.taskmanager.command.CommandRules;
 import bg.sofia.uni.fmi.mjt.taskmanager.exception.UserAlreadyExistsException;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ public class RegisterHandler implements CommandHandler {
     private static final CommandRules RULES = new CommandRules(
             Set.of(USERNAME_ATTRIBUTE, PASSWORD_ATTRIBUTE),
             Set.of());
+
     private static final String SUCCESS_MESSAGE =
             "Your have registered successfully.";
 
@@ -27,8 +29,8 @@ public class RegisterHandler implements CommandHandler {
         String password = args.get(PASSWORD_ATTRIBUTE);
 
         try {
-
-            storage.registerUser(username, password);
+            String encodedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+            storage.registerUser(username, encodedPassword);
             return SUCCESS_MESSAGE;
 
         } catch (UserAlreadyExistsException e) {
