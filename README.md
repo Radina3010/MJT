@@ -1,3 +1,5 @@
+## Project Structure
+```
 src
 └── bg.sofia.uni.fmi.mjt.taskmanager
     ├── client
@@ -11,7 +13,7 @@ src
     │   ├── CommandRules.java
     │   └── CommandValidator.java
     ├── exception
-    ├── extractors.java
+    ├── extractors
     │   ├── BooleanExtractor.java
     │   ├── Extractor.java
     │   └── LocalDateExtractor.java
@@ -29,7 +31,7 @@ src
     └── server
         └── TaskManagerServer.java
 
-        
 test
 └── bg.sofia.uni.fmi.mjt.taskmanager
      └── (...)
+```
