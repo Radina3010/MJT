@@ -1,4 +1,4 @@
-# Todoist-like Task Manager
+# To-do-list (Task Manager)
 
 A console-based client-server task management application built with Java.
 
